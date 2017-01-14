@@ -2,18 +2,12 @@ Start the App :
 
 
 
->> https://polar-tor-97887.herokuapp.com/[INPUT-DATE-OR-UNIX-TIMESTAMP] <<
+>> https://filesize-api.herokuapp.com/ <<
 
 
 
 
 User stories:
-1) I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016)
-2) If it does, it returns both the Unix timestamp and the natural language form of that date.
-3) If it does not contain a date or Unix timestamp, it returns null for those properties.
+1.User Story: I can submit a FormData object that includes a file upload.
 
-Example usage:
-https://timestamp-ms.herokuapp.com/December%2015,%202015
-https://timestamp-ms.herokuapp.com/1450137600
-Example output:
-{ "unix": 1450137600, "natural": "December 15, 2015" }
+2.User Story: When I submit something, I will receive the file size in bytes within the JSON response
