@@ -1,6 +1,10 @@
 var express = require('express');
 var moment = require('moment');
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+
 var app = express();
+
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -11,22 +15,15 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 app.get("/", function(request, response) {
-  response.end("https://polar-tor-97887.herokuapp.com/[INPUT-DATE-OR-UNIX-TIMESTAMP]");
+  response.render('index');
 });
 
 
-app.all("/:date", function(request, response) {
-
-if(moment(request.params.date, 'LL', true).isValid() == true){
-  response.end("Date is: "+request.params.date);
-}
-else if(moment.unix(request.params.date).isValid() == true){
-    response.end("unix timestamp is: "+request.params.date); 
-}
-else
-{
-   response.end("No date found!"); 
-}
+app.post("/file-size", upload.single('file'), function(request, response) {
+      response.json({
+        "Name": request.file.originalname,
+        "Size": request.file.size
+      });
 });
 
 // app.get("/about", function(request, response) {
